@@ -73,8 +73,6 @@ defmodule MyCacheTest do
       assert record.value == nil
     end
 
-    # test expires function after ttl
-
     test "Starts Task for registered function and reschedules it after refresh interval" do
       key = gen_key()
 
@@ -99,7 +97,7 @@ defmodule MyCacheTest do
         :sys.get_state(MyCache)
         |> Map.get(key)
 
-      refute record_1 == record_2
+      refute record_1.value == record_2.value
     end
 
     test "schedules tasks concurrently" do
